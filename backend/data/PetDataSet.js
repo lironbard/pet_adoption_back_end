@@ -1,6 +1,5 @@
 const pets = [
   {
-    id: "1",
     type: "Dog",
     name: "Bradley",
     image: "/images/Buddy.jfif",
@@ -15,7 +14,6 @@ const pets = [
     breed: "Pit Bull Mix",
   },
   {
-    id: "2",
     type: "Cat",
     name: "Rajah",
     image: "/images/Camila.jfif",
@@ -30,7 +28,6 @@ const pets = [
     breed: "Domestic Shorthair Mix",
   },
   {
-    id: "3",
     type: "Cat",
     name: "Pebbles",
     image: "/images/Tippy.jfif",
@@ -45,7 +42,6 @@ const pets = [
     breed: "Domestic Shorthair Mix",
   },
   {
-    id: "4",
     type: "Dog",
     name: "Johnny",
     image: "/images/Cheeka.jfif",
@@ -60,7 +56,6 @@ const pets = [
     breed: "Pit Bull",
   },
   {
-    id: "5",
     type: "Cat",
     name: "Miso",
     image: "/images/Holly.jfif",
@@ -75,7 +70,6 @@ const pets = [
     breed: "Domestic Shorthair Mix",
   },
   {
-    id: "6",
     type: "Cat",
     name: "Lucky Charm",
     image: "/images/Pat.jfif",
