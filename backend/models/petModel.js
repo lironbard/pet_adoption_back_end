@@ -1,21 +1,7 @@
 import mongoose from "mongoose";
 
-const bioSchema = mongoose.Schema(
-  {
-    name: { type: String, required: true },
-    favorite: { type: Boolean, required: true, default: false },
-    bioComment: { type: String, required: true },
-  },
-  { timestamps: true }
-);
-
 const petSchema = mongoose.Schema(
   {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: "User",
-    },
     type: {
       type: String,
       required: true,
@@ -24,38 +10,36 @@ const petSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    image: {
-      type: String,
-      required: true,
-    },
     adoptionStatus: {
       type: String,
       required: true,
+      default: "Available",
     },
     picture: {
       type: String,
       required: true,
     },
     height: {
-      type: Number,
+      type: String,
       required: true,
-      default: 0,
     },
     weight: {
-      type: Number,
+      type: String,
       required: true,
-      default: 0,
     },
     color: {
       type: String,
       required: true,
     },
-    bio: [bioSchema],
-    hypoallergnic: {
+    bio: {
+      type: String,
+      required: true,
+    },
+    hypoallergenic: {
       type: Boolean,
       required: true,
     },
-    dietery: {
+    dietaryRestrictions: {
       type: String,
       required: true,
     },
@@ -63,27 +47,15 @@ const petSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    rating: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
-    numReviews: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
-    favorite: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
+    likedBy: [String],
+    fosteredBy: String,
+    adoptedBy: String,
   },
   {
     timestamps: true,
   }
 );
 
-const Pet = mongoose.model("Pet", petSchema);
+const Pets = mongoose.model("Pets", petSchema);
 
-export default Pet;
+export default Pets;
