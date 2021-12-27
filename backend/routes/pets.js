@@ -40,3 +40,22 @@ router.post("/pet", async (req, res) => {
     res.json({ message: err });
   }
 });
+//GET pet by ID
+router.get("/:petID", async (req, res) => {
+  try {
+    const pet = await Pets.findById(req.params.petID);
+    res.json(pet);
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
+
+//DELETE pet by ID
+router.delete("/pet/:petId/delete", async (req, res) => {
+  try {
+    const removedPet = await Pets.remove({ _id: req.params.petId });
+    res.json(removedPet);
+  } catch (err) {
+    res.json({ message: err });
+  }
+});

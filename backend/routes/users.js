@@ -33,3 +33,47 @@ router.get("/", verifyToken, async (req, res) => {
     res.json({ message: err });
   }
 });
+
+//POST new user sign up.
+router.post("/signup", async (req, res) => {
+  //validate data before creating user
+  const { error } = registerValidation(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+
+  //checking if the user is already in the database
+  const emailExist = await User.findOne({ email: req.body.email });
+  if (emailExist) return res.status(400).send("Email already exists");
+
+  //Hash password
+  const salt = await bcrypt.genSalt(10);
+  const hashPassword = await bcrypt.hash(req.body.password, salt);
+  const hashRepeatPassword = await bcrypt.hash(req.body.repeatPassword, salt);
+
+  //Create a new user
+  const user = new User({
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    phone: req.body.phone,
+    email: req.body.email,
+    password: hashPassword,
+    repeatPassword: hashRepeatPassword,
+    likedPets: [],
+    fosterdPets: [],
+    adoptedPets: [],
+  });
+  try {
+    const savedUser = await user.save();
+    const token = jwt.sign({ id: savedUser._id }, process.env.TOKEN_SECRET);
+    res.json({
+      userId: savedUser.id,
+      userToken: token,
+      userName: `${savedUser.firstName} ${savedUser.lastName}`,
+      adoptedPets: savedUser.adoptedPets,
+      fosterdPets: savedUser.fosterdPets,
+      likedPets: savedUser.likedPets,
+      userType: savedUser.userType,
+    });
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
