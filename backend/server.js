@@ -1,28 +1,26 @@
-import express from "express";
-import dotenv from "dotenv";
-import connectDB from "./config/db.js";
-import pets from "./data/PetDataSet.js";
-const bodyParser = require("body-parser");
-const cors = require("cors");
-
-dotenv.config();
-
-connectDB();
-
+const express = require("express");
 const app = express();
+const connectDB = require("./config/db.js");
+// const bodyParser = require("body-parser");
+// const cors = require("cors");
+
+const dotenv = require("dotenv");
+require("dotenv");
+dotenv.config();
+connectDB();
 
 const petsRoute = require("./routes/pets");
 const usersRoute = require("./routes/users");
 
-app.use(cors());
-app.use(bodyParser.json());
+// app.use(cors());
+// app.use(bodyParser.json());
 app.use("/pets", petsRoute);
 app.use("/users", usersRoute);
 
 app.get("/", (req, res) => {
   res.send("we are on home");
 });
-
+//----\\
 // app.get("/", (req, res) => {
 //   res.send("API is running");
 // });

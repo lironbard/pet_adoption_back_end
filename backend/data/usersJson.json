@@ -1,0 +1,12 @@
+{
+  "likedPets": [""],
+  "fosterdPets": [""],
+  "adoptedPets": [""],
+  "firstName": "Liron",
+  "lastName": "Bard",
+  "phone": "0522865614",
+  "email": "admin@admin.com",
+  "password": "123",
+  "repeatPassword": "123",
+  "userType": 1
+}

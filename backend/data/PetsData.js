@@ -1,5 +1,6 @@
 const pets = [
   {
+    id: "1",
     type: "Dog",
     name: "Bradley",
     image: "/images/Buddy.jfif",
